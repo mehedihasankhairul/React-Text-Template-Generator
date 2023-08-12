@@ -1,1 +1,1 @@
-React Text Template Editor - A React component for editing text templates.
+React Text Template Generator - A React component for editing text templates.
