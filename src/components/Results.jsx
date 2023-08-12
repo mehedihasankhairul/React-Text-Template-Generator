@@ -5,7 +5,7 @@ const Results = ({ generateMergedText }) => {
   return (
     <div>
       <h2>Results</h2>
-      <textarea id="editor" name="editor" rows="10" cols="80" defaultValue={generateMergedText()} />
+      <textarea id="editor" name="editor" rows="10" cols="80" readOnly value={generateMergedText()} />
     </div>
   );
 };

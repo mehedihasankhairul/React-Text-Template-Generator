@@ -8,6 +8,7 @@ const Template = () => {
 
   const handleInputChange = (event) => {
     const newText = event.target.value;
+
     setInputText(newText);
     extractVariables(newText);
   };
@@ -15,7 +16,7 @@ const Template = () => {
   const extractVariables = (text) => {
     const regex = /{{(.*?)}}/g;
     const matches = text.matchAll(regex);
-    const extractedVariables = {};
+    const extractedVariables = [];
 
     for (const match of matches) {
       const variableName = match[1];
@@ -28,7 +29,8 @@ const Template = () => {
   const handleVariableInputChange = (variableName, value) => {
     setVariableValues((prevValues) => ({
       ...prevValues,
-      [variableName]: value,
+      // slice(2, -2) removes the curly braces from the variable name
+      [variableName.slice(2, -2)]: value,
     }));
   };
 
@@ -46,6 +48,7 @@ const Template = () => {
   return (
     <div>
       <h2>Your Template Text</h2>
+      <p>Enter your template text below. Use double curly braces to indicate variables.</p>
       <textarea
         id="editor"
         name="editor"
@@ -61,6 +64,7 @@ const Template = () => {
         variableValues={variableValues}
         handleVariableInputChange={handleVariableInputChange}
       />
+
       <Results generateMergedText={generateMergedText} />
     </div>
   );
